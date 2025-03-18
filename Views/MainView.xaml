@@ -22,19 +22,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <DataTemplate DataType="{x:Type system:DateTime}">
-                <StackPanel Margin="16">
-                    <TextBlock Text="England win the World Cup:" />
-                    <TextBlock Margin="0,8,0,0" Text="{Binding}" />
-                    <TextBlock Margin="0,8,0,0" Text="You will never see that again." />
-                    <Button Margin="0,8,0,0"
-                  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                  Content="AWESOME"
-                  IsDefault="True"
-                  Style="{StaticResource MaterialDesignFlatButton}" />
-                </StackPanel>
-            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -70,18 +57,19 @@
 
                             <StackPanel HorizontalAlignment="Right" Grid.Column="2" Orientation="Horizontal">
                                 <!--登录-->
-                                <Button Content="{materialDesign:PackIcon Kind=Account}" Command="{Binding OpenLoginDialogCommand}" Padding="0" Style="{StaticResource MaterialDesignFloatingActionButton}"/>
+                                <Button x:Name="btnMssin" Content="{materialDesign:PackIcon Kind=Account}" Command="{Binding OpenLoginDialogCommand}" Foreground="White"
+                                        Style="{StaticResource MaterialDesignIconButton}" WindowChrome.IsHitTestVisibleInChrome="True" />
 
                                 <!--最小化-->
-                                <Button x:Name="btnMin" Margin="10,5,5,5" Content="{materialDesign:PackIcon Kind=WindowMinimize}" Foreground="Black"
+                                <Button x:Name="btnMin" Content="{materialDesign:PackIcon Kind=WindowMinimize}" Foreground="Black"
                                         Style="{StaticResource MaterialDesignFlatButton}" WindowChrome.IsHitTestVisibleInChrome="True" />
 
-                                    <!--最大化-->
-                                    <Button x:Name="btnMax" Margin="5" Content="{materialDesign:PackIcon Kind=WindowMaximize}" Foreground="Black"
+                                <!--最大化-->
+                                <Button x:Name="btnMax" Content="{materialDesign:PackIcon Kind=WindowMaximize}" Foreground="Black"
                                         Style="{StaticResource MaterialDesignFlatButton}" WindowChrome.IsHitTestVisibleInChrome="True" />
 
-                                    <!--关闭-->
-                                    <Button x:Name="btnClose" Margin="5" Content="{materialDesign:PackIcon Kind=WindowClose}" Foreground="Black"
+                                <!--关闭-->
+                                <Button x:Name="btnClose" Content="{materialDesign:PackIcon Kind=WindowClose}" Foreground="Black"
                                         Style="{StaticResource MaterialDesignFlatButton}" WindowChrome.IsHitTestVisibleInChrome="True" />
                             </StackPanel>
                         </Grid>
@@ -99,7 +87,6 @@
                     <Grid Grid.Column="1">
                         <ContentControl prism:RegionManager.RegionName="CenterView"/>
                     </Grid>
-
                 </Grid>
             </Grid>
         </materialDesign:DrawerHost>

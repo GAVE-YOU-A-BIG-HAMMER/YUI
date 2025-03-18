@@ -25,7 +25,6 @@ namespace YUI
             containerRegistry.RegisterForNavigation<SideNavigationView, SideNavigationViewModel>();
             containerRegistry.RegisterForNavigation<ColorToolView, ColorToolViewModel>();
             containerRegistry.RegisterForNavigation<DemoCenterView, DemoCenterViewModel>();
-            containerRegistry.RegisterForNavigation<LoginView, LoginViewModel>();
         }
     }
 }

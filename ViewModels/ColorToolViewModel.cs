@@ -6,6 +6,8 @@ using System.Windows.Media;
 
 namespace YUI.ViewModels;
 
+public class ColorToolModifyThemeEvent : PubSubEvent<bool> { }
+
 public class ColorToolViewModel : BindableBase
 {
 	private bool _isDarkTheme;
@@ -17,7 +19,8 @@ public class ColorToolViewModel : BindableBase
 			if (SetProperty(ref _isDarkTheme, value))
 			{
 				ModifyTheme(theme => theme.SetBaseTheme(value ? BaseTheme.Dark : BaseTheme.Light));
-			}
+                _eventAggregator.GetEvent<ColorToolModifyThemeEvent>().Publish(value);
+            }
 		}
 	}
 
@@ -83,10 +86,11 @@ public class ColorToolViewModel : BindableBase
 	public DelegateCommand<object> ChangeHueCommand { get; private set; }
 
 	private readonly PaletteHelper paletteHelper = new PaletteHelper();
-
-	public ColorToolViewModel()
+    private readonly IEventAggregator _eventAggregator;
+    public ColorToolViewModel(IEventAggregator eventAggregator)
 	{
-		ChangeHueCommand = new DelegateCommand<object>(ChangeHue);
+        _eventAggregator = eventAggregator;
+        ChangeHueCommand = new DelegateCommand<object>(ChangeHue);
 	}
 
 	private static void ModifyTheme(Action<Theme> modificationAction)

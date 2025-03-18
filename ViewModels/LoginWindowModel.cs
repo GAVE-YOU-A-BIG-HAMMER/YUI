@@ -1,12 +1,18 @@
+using MaterialDesignThemes.Wpf;
 using Prism.Commands;
 using Prism.Mvvm;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using YControlLibrary;
+using YUI.Views;
 
 namespace YUI.ViewModels
 {
-    public class LoginViewModel : BindableBase
+    public class LoginShowEvent : PubSubEvent { }
+
+    public class LoginWindowModel : BindableBase
     {
         private string _userName;
         public string UserName
@@ -22,13 +28,23 @@ namespace YUI.ViewModels
             set { SetProperty(ref _password, value); }
         }
 
+        private bool _isDialogOpen;
+
+        public bool IsDialogOpen
+        {
+            get => _isDialogOpen;
+            set => SetProperty(ref _isDialogOpen, value);
+        }
+
         public DelegateCommand LoginCommand { get; private set; }
 
         // 创建账号
         public DelegateCommand SignupCommand { get; private set; }
 
-        public LoginViewModel()
+        //private readonly IEventAggregator _eventAggregator;
+        public LoginWindowModel()
         {
+            //_eventAggregator = ContainerLocator.Container.Resolve<IEventAggregator>();
             LoginCommand = new DelegateCommand(ExecuteLogin, CanExecuteLogin)
                 .ObservesProperty(() => UserName)
                 .ObservesProperty(() => Password);
@@ -66,5 +82,6 @@ namespace YUI.ViewModels
         {
             MessageBox.Show("创建账号");
         }
+
     }
 }

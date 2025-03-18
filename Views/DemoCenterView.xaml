@@ -13,9 +13,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <materialDesign:Card>
-            <TabControl HorizontalContentAlignment="Center" Style="{StaticResource MaterialDesignFilledUniformTabControl}">
+            <TabControl HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFilledTabControl}">
                 <TabItem Header="TAB1">
-                    <TextBlock Margin="8" Text="Filled, centered, uniform width, tab 1" />
+                    <StackPanel>
+                        <TextBlock Margin="8" Text="Filled, centered, uniform width, tab 1" />
+                        <Button Content="创建一个透明窗口" Command="{Binding TestCommand}"/>
+                    </StackPanel>
                 </TabItem>
                 <TabItem Header="TAB 2 Wide">
                     <TextBlock Margin="8" Text="Filled, centered, uniform width, tab 2" />
